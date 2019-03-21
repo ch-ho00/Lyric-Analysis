@@ -4,6 +4,7 @@ Topic modelling, word embedding of different types of lyrics
 ## Projects on document embedding
 
 So far I have been working on two projects and their corresponding research question are as follows.
+Furthermore details of respective projects can be accessed through the subrepository.
 
 ### 1. Contemporary Christian Song Lyrics 
 
