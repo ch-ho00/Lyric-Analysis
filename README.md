@@ -5,10 +5,10 @@ Topic modelling, word embedding of different types of lyrics
 
 So far I have been working on two projects and their corresponding research question are as follows.
 
-1. Contemporary Christian Song Lyrics 
+### 1. Contemporary Christian Song Lyrics 
 
 Research Question: Through the analysis of LDA model trained by Christian Music lyrics, how have topics/words of Christian music changed over time?
 
-2. K-Pop Song Lyrics
+### 2. K-Pop Song Lyrics
 
 Research Question: What is the correlation between the 'creativity' of song lyric and popularity of a K-pop song? If not what are the factors that affect the success of a song?
