@@ -49,7 +49,7 @@ Topic 1
 
 Topic 2
 
-<img src="https://github.com/chanhopark00/Lyric-Analysis/Christian-music-analysis/blob/master/image/3_topic3.png" width="400" >
+<img src="https://github.com/chanhopark00/Lyric-Analysis/Lyric-Analysis/blob/master/Christian-music-analysis/image/3_topic3.png" width="400" >
 
 Topic 3
 
