@@ -6,7 +6,7 @@ Jesusfreakhideout.com™ is one of the world's largest Christian music online re
 
 https://www.jesusfreakhideout.com
 
-<img src="https://github.com/chanhopark00/ccm_scrape/blob/master/image/site.png" width="600" >
+<img src="https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/site.png" width="600" >
 
 Through BeautifulSoup, 20335 lemmatized songs along with the artist and year of songs are saved. 
 
@@ -41,15 +41,15 @@ Out of multiple models through the optimisation of hyperparameters, including th
    
    alpha (LDA model parameter) = auto
    
-<img src="https://github.com/chanhopark00/ccm_scrape/blob/master/image/3_topic1.png" width="400" >
+<img src="https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/3_topic1.png" width="400" >
 
 Topic 1 
 
-<img src="https://github.com/chanhopark00/ccm_scrape/blob/master/image/3_topic2.png" width="400" >
+<img src="https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/3_topic2.png" width="400" >
 
 Topic 2
 
-<img src="https://github.com/chanhopark00/ccm_scrape/blob/master/image/3_topic3.png" width="400" >
+<img src="https://github.com/chanhopark00/Lyric-Analysis/Christian-music-analysis/blob/master/image/3_topic3.png" width="400" >
 
 Topic 3
 
@@ -64,8 +64,8 @@ The 4 methods are by comparing with different topic modelling model, analyzing u
 
 ### Comparison between different models (HDP, LSI)
 
-<img src="https://github.com/chanhopark00/ccm_scrape/blob/master/image/hdp1.png" width="900" >
-<img src="https://github.com/chanhopark00/ccm_scrape/blob/master/image/hdp2.png" width="900" >
+<img src="https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/hdp1.png" width="900" >
+<img src="https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/hdp2.png" width="900" >
 
 We can notice the HDP and LSI model contains same words appearing across more than one topics. Therefore the interpretability makes the models inapt for analysis
 
@@ -73,22 +73,22 @@ We can notice the HDP and LSI model contains same words appearing across more th
 ### Analysis of unseen text
 
 
-https://github.com/chanhopark00/ccm_scrape/blob/master/image/song1.png" 
+https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/song1.png" 
 
 
-https://github.com/chanhopark00/ccm_scrape/blob/master/image/song2.png" 
+https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/song2.png" 
 
 
-https://github.com/chanhopark00/ccm_scrape/blob/master/image/song3.png" 
+https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/song3.png" 
 
 
-https://github.com/chanhopark00/ccm_scrape/blob/master/image/song4.png" 
+https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/song4.png" 
 
 <Song 1,2,3,4>
 
 The following is the result.
 
-https://github.com/chanhopark00/ccm_scrape/blob/master/image/unseen_text.txt" 
+https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/unseen_text.txt" 
 
 I have made this part concise because it involves subjectivity while analysis. 
 From this perspective, I personally believe that the parameters are set most reasonably when number of topic is two.
@@ -97,7 +97,7 @@ From this perspective, I personally believe that the parameters are set most rea
 
 With the help of pyLDAvis library we are able to 
 
-<img src="https://github.com/chanhopark00/ccm_scrape/blob/master/image/visualisation.png" width="800" >
+<img src="https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/visualisation.png" width="800" >
 
 A pair of overlaid bars represent both the corpus-wide frequency of a given term as well as the topic-specific frequency of the term
 
@@ -105,7 +105,7 @@ A pair of overlaid bars represent both the corpus-wide frequency of a given term
 #### LDA Coherence score
 
 
-<img src="https://github.com/chanhopark00/ccm_scrape/blob/master/image/coherence_plot.png" width="600" >
+<img src="https://github.com/chanhopark00/Lyric-Analysis/blob/master/Christian-music-analysis/image/coherence_plot.png" width="600" >
 
 The coherence score is for assessing the quality of the learned topics.
 
