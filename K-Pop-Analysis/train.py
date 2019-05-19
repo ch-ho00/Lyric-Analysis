@@ -7,6 +7,7 @@ from konlpy.tag import Kkma,Okt
 from konlpy.utils import pprint
 import gensim
 from clean import *
+from kiwipiepy import Kiwi
 
 def to_word(sentence_dic,kor_tag):
   #returns list of list with elements of important words
@@ -15,10 +16,11 @@ def to_word(sentence_dic,kor_tag):
     out.append(imp_words(i,sentence_dic[i],kor_tag))
   return out
 
-
 def imp_words(i, text, kor_tag):
-# to do
-#   make it work for all the taggers
+    """
+     input: text, tag 
+     output: cleaned text using tag input
+    """
     okt = Okt()
     out_list = []
     okt_stop = ['Eomi','Punctuation','Unknown', 'Josa','PreEomi', 'Conjunction', 'Punctuation', 'KoreanParticle']
@@ -38,6 +40,7 @@ def imp_words(i, text, kor_tag):
             f.write(str(i))
             f.write('\n')
     return out_list
+
 def to_dictionary(sentence_dic, vocab_size):
     tmp = 0
     vocab = []
@@ -51,7 +54,6 @@ def to_dictionary(sentence_dic, vocab_size):
         else:
             vocab.append(imp_words(i,sentence_dic[i],kor_tag))
     return dic,vocab
-    
 def train(load_model,sentence_dic,kor_tag,window,min_count,size,vocab_size):
     tmp = 0
     first = []
@@ -70,4 +72,22 @@ def train(load_model,sentence_dic,kor_tag,window,min_count,size,vocab_size):
         if(tmp < 5000):
             continue
         model.train([imp_words(i, sentence_dic[i],kor_tag)],total_examples=1,epochs=1)
+    model.save("./models/"+load_model)
+def train_word2vec(load_model,sentence_dic,window,min_count,size,vocab_size):
+    vocab = []
+    train = []
+    tmp = 0 
+    for i in sentence_dic:
+        if tmp < vocab_size:
+            vocab.append(sentence_dic[i])
+        else:
+            train.append(sentence_dic[i])
+        tmp+=1
+    model = gensim.models.Word2Vec(vocab,window=window, min_count=min_count, size=size)
+    tmp = 0 
+    for i in tqdm(train):
+        tmp = tmp +1
+        if(tmp % 10000 == 0):
+            model.save("./models/"+load_model)
+        model.train([i],total_examples=1,epochs=1)
     model.save("./models/"+load_model)
