@@ -5,6 +5,10 @@ from tqdm import tqdm
 
 
 def artist_list(save_dir):
+    '''
+    input: text file save directory
+    output: scrapped artist list 
+    '''
     # get list of artist and their id
     page = requests.get("https://www.jesusfreakhideout.com/lyrics/new/default.asp")
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -29,6 +33,10 @@ def artist_list(save_dir):
     return artist_list
 
 def artist_track(artist_list,save_dir):
+    '''
+    input: text file save directory
+    output: scrapped {artistid : [trackid]} dictionary of lists
+    '''
     # get list of artist corresponding track titles and id
     artist_track= {}
     tmp = 0
@@ -69,6 +77,10 @@ def artist_track(artist_list,save_dir):
     return copy
 
 def lyric_list(artist_track, save_dir):
+    '''
+    input: {artistid:[trackid]}, save directory
+    output: scrapped {trackid:lyric} dictionary
+    '''
     # get list of lyrics indexed by their corresponding track id
     lyric_list = {}
     for artist in tqdm(artist_track):

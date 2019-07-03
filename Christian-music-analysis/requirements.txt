@@ -1,0 +1,7 @@
+gensim==3.7.2
+pyLDAvis==2.1.2
+nltk==3.4.1
+Unidecode==1.0.23
+matplotlib==3.0.3
+bs4==0.0.1
+tqdm==4.31.1

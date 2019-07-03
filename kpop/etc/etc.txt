@@ -1,0 +1,112 @@
+For filtering list of songid
+# _____________________________________________________
+# korean_song_id = pd.read_csv("./data/song_id.csv")
+# korean_song_id = korean_song_id['B_song_id'].tolist()
+# for i in korean_song_id:
+#         try:
+#                 sentence_dic[i]
+#         except:
+#                 print("Not in list", i)
+#                 continue
+#______________________________________________________
+# BELOW IS ATTEMPT TO TRANSLATE
+# translate_client = translate.Client()
+# google_translate(sentence_dic,translate_client)
+
+_____________________________________________________
+GENERATE KIWI WORDS
+
+def kiwi_clean(kiwi_dir):
+  '''
+  Input: 
+  Output: 
+  '''
+    f2 = codecs.open(kiwi_dir, encoding="utf-8")
+    imp_word = {}
+    song_word = []
+    for line in f2:
+        try:
+            line.index('/')
+            tmp = 0
+            tmp2 = 0
+            while line.index('/',tmp) != -1:
+                try:
+                    tmp = line.index('/',tmp+1)
+                    if line[0] == '/' and len(song_word)==0:
+                        idd = int(line[9:line.index('/',9)])
+                        imp_word['dummy'] = [0]
+                    elif line[0]=='/':
+                        imp_word[idd] = song_word
+                        idd = int(line[5:line.index('/',5)])
+                        song_word = []
+                        break
+                    if tmp2 ==0:
+                        # check tagger 
+                        if str(line[tmp+1:tmp+4]).replace(' ','') == "NNG" or str(line[tmp+1:tmp+4]).replace(' ','') == "VV" or str(line[tmp+1:tmp+4]).replace(' ','') == "MAG" or str(line[tmp+1:tmp+4]).replace(' ','') == "VA" or str(line[tmp+1:tmp+4]).replace(' ','') == "VX":
+                            # length of word minimum 2
+                            if len(line[tmp2:tmp]) > 1:
+                                song_word.append(str(line[tmp2:tmp]).replace(' ',''))
+                    else:
+                        if str(line[tmp+1:tmp+4]).replace(' ','') == "NNG" or str(line[tmp+1:tmp+4]).replace(' ','') == "VV" or str(line[tmp+1:tmp+4]).replace(' ','') == "MAG" or str(line[tmp+1:tmp+4]).replace(' ','') == "VA" or str(line[tmp+1:tmp+4]).replace(' ','') == "VX":
+                            if len(line[tmp2+2:tmp]) > 1:
+                                song_word.append(line[tmp2+2:tmp])
+                    tmp2 = line.index('+',tmp2+1)
+                except: 
+                    break
+        except:
+            continue
+    del imp_word['dummy']
+    return imp_word
+_______________________
+
+# ____________________________________
+# GENERATE KIWI BOW
+#   - functions are in tagger.py
+# for i in tqdm(sentence_dic):
+#     if i in korean_song_id:
+#         cleaned_kiwi_words[i]= kiwi_words(kiwi,i,sentence_dic[i])
+#     else:
+#         print("not there",i)
+# dictionary,vocab = kiwi_dictionary(cleaned_kiwi_words, 1)
+#______________________________
+
+# ____________________________________
+# GENERATE KOALA BOW
+#   - functions are in tagger.py
+# for i in tqdm(sentence_dic):
+#         tmp +=1
+#         if tmp == 5000:
+#                 with codecs.open("./data/cleaned/koala_bow.txt", 'w', encoding='utf8') as f:
+#                         for i in cleaned_koala_words:
+#                                 f.write(str(i))
+#                                 f.write('\n')
+#                                 f.write(str(cleaned_koala_words[i]))
+#                                 f.write('\n')
+#                 break
+#         cleaned_koala_words[i]= koala_word(tagger,i,sentence_dic[i])
+#         # print(cleaned_koala_words[i])
+#         added.append(i)
+#__________________________________________
+
+______________________
+RETRIEVE koala_bow
+# f = open("./data/cleaned/koala_bow.txt")
+# l = f.readline()
+# cleaned_koala_words = {}
+# print("started \n_____________")
+# while len(l) != 0:
+#   try:
+#     if len(l) > 3 and len(l) < 9:
+#         idd = int(l)
+#     else:
+#         l = str(l).replace('\'','')
+#         l = str(l).replace('[','')
+#         l = str(l).replace(']','')
+#         l = str(l).replace('\n','')
+#         cleaned_koala_words[idd] = l.split(',')
+#   except:
+#         print("exception",idd,l)
+#         l = f.readline()
+#         continue
+#   l = f.readline()
+____________________________________

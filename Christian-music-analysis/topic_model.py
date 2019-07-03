@@ -16,7 +16,6 @@ nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
-
 import unidecode
 import codecs
 import matplotlib.pyplot as plt
@@ -29,6 +28,10 @@ import warnings
 
 
 def generate_corpus(dictionary):
+    '''
+    input: list of bag-of-words
+    output: list of doc2bow format tuples
+    '''
     # Create dictionary
     dic = corpora.Dictionary(dictionary)
     # Create bag of words
@@ -36,21 +39,34 @@ def generate_corpus(dictionary):
     return corpus, dic
   
 def create_lda(num_topic, dictionary):
-    print("__________________________Create LDA_________________________")
+    '''
+    input: number of topics ,list of bag-of-words
+    output: LDA model
+    '''    
     corpus, dic= generate_corpus(dictionary)
     lda= gensim.models.ldamodel.LdaModel(corpus, num_topics = num_topic, id2word=dic, passes=15)
-    topics = lda.print_topics(num_words = 7)
+    topics = lda.print_topics(num_words = 10)
     # see list of topics
-    for topic in topics:
-        print(topic)
+    with codecs.open('./results/lda_topics.txt','a') as f:
+        f.write("Create LDA with topic = "+ str(num_topic) + "\n")
+        for topic in topics:
+            f.write(str(topic)+'\n')
         # Save model to disk.
 #    temp_file = datapath("./models")
 #    lda.save(temp_file)
     return lda, dic
-def text2topic(lda, bow_text):
+def text2topic(lda, bow_text,text_id):
+    '''
+    input: number of topics , bag-of-word
+    output: list of topic consisting bag-of-word
+    ''' 
     vector = lda[bow_text]  # get topic probability distribution for a document
-    for topic in vector:
-      print(topic)
+    with codecs.open('./results/lda_result.txt', 'a') as f:
+        f.write(str(text_id)+" : ")
+        for topics in vector:
+            for topic in topics:
+                f.write(str(topic)+" ")
+        f.write('\r\n')
     # y_axis = []
     # x_axis = []
     # for dist in vector:
@@ -69,9 +85,14 @@ def text2topic(lda, bow_text):
     # plt.close()
     return vector 
 def lemmatize(lyric_list,save_dir):
+    '''
+    input: dictionary {songid: lyric} , save_directory
+    output: lemmatized sentence dictionary
+    ''' 
     # gensim Wordnet Lemmatizer
     lemmatizer = WordNetLemmatizer()
-    dictionary = []
+    dictionary = {}
+    ll = []
     add = []
     stop_words = set(stopwords.words('english'))
     stop_words.add('?')
@@ -106,11 +127,12 @@ def lemmatize(lyric_list,save_dir):
                             f.write('\n')
                 else:
                     tmp.append(i[0])
-        dictionary.append(tmp)
+        dictionary[lyric] = tmp
+        ll.append(tmp)
     copy = dictionary 
     #save lemmatized dictionary 
     print(str(len(dictionary))+ " lemmatized songs saved ")
-    return copy 
+    return copy , ll 
 def lemmatize_unseen(lyric_list):
     # gensim Wordnet Lemmatizer
     lemmatizer = WordNetLemmatizer()
@@ -142,6 +164,10 @@ def lemmatize_unseen(lyric_list):
         dictionary.append(tmp)
     return dictionary
 def create_lsi(num_topic, dictionary):
+    '''
+    input: number of topic, dictionary 
+    output: LSI topic modeling result
+    ''' 
     corpus, dic= generate_corpus(dictionary)
     print("__________________________Create LSI_________________________")
     lsimodel = LsiModel(corpus=corpus, num_topics=10, id2word=dic)
@@ -153,6 +179,10 @@ def create_lsi(num_topic, dictionary):
     return lsimodel
 
 def create_hdp(num_topic, dictionary):
+    '''
+    input: number of topic, dictionary 
+    output: HDP topic modeling result
+    ''' 
     print("__________________________Create HDP_________________________")
     corpus, dic= generate_corpus(dictionary)
     hdpmodel = HdpModel(corpus=corpus, id2word=dic)
@@ -164,19 +194,27 @@ def create_hdp(num_topic, dictionary):
     return hdpmodel
 
 def lda_visualize(ldamodel, dictionary, num_topic):
+    '''
+    input: lda model, dictionary, number of topic 
+    output: pyLDAvis visualisation
+    ''' 
     corpus, dic= generate_corpus(dictionary)
     # pyLDAvis.enable_notebook()
     vis = pyLDAvis.gensim.prepare(ldamodel, corpus, dic)
     pyLDAvis.save_html(vis, 'LDA_Visualization_' +str(num_topic) + '.html')
 
 def evaluate(lda_model, dictionary):
-  # Compute Perplexity
-  corpus, id2word = generate_corpus(dictionary)
-  print('\nPerplexity: ', lda_model.log_perplexity(corpus))  # a measure of how good the model is. lower the better.
-  # Compute Coherence Score
-  coherence_model_lda = CoherenceModel(model=lda_model, texts=dictionary, dictionary=id2word, coherence='c_v')
-  coherence_lda = coherence_model_lda.get_coherence()
-  print('\nCoherence Score: ', coherence_lda)
+    '''
+    input : lda model
+    output : prints perplexity, coherence score
+    '''
+    # Compute Perplexity
+    corpus, id2word = generate_corpus(dictionary)
+    print('\nPerplexity: ', lda_model.log_perplexity(corpus))  # a measure of how good the model is. lower the better.
+    # Compute Coherence Score
+    coherence_model_lda = CoherenceModel(model=lda_model, texts=dictionary, dictionary=id2word, coherence='c_v')
+    coherence_lda = coherence_model_lda.get_coherence()
+    print('\nCoherence Score: ', coherence_lda)
   
 def plot_coherece(num_topic, coherence_score):
     plt.figure(1, figsize=(10,8))

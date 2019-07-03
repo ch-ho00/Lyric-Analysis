@@ -1,0 +1,70 @@
+topic_model.py
+
+    def generate_corpus(dictionary):
+        '''
+        input: list of bag-of-words
+        output: list of doc2bow format tuples
+        '''
+
+    def create_lda(num_topic, dictionary):
+        '''
+        input: number of topics ,list of bag-of-words
+        output: LDA model
+        ''' 
+    def text2topic(lda, bow_text):
+        '''
+        input: number of topics , bag-of-word
+        output: list of topic consisting bag-of-word
+        ''' 
+
+    def lemmatize(lyric_list,save_dir):
+        '''
+        input: dictionary {songid: lyric} , save_directory
+        output: lemmatized sentence dictionary
+        ''' 
+    def create_lsi(num_topic, dictionary):
+        '''
+        input: number of topic, dictionary 
+        output: LSI topic modeling result
+        ''' 
+    def create_hdp(num_topic, dictionary):
+        '''
+        input: number of topic, dictionary 
+        output: HDP topic modeling result
+        ''' 
+    
+    def lda_visualize(ldamodel, dictionary, num_topic):
+        '''
+        input: lda model, dictionary, number of topic 
+        output: pyLDAvis visualisation
+        ''' 
+
+    def evaluate(lda_model, dictionary):
+        '''
+        input : lda model
+        output : prints perplexity, coherence score
+        '''
+
+scrape.py
+
+    def artist_list(save_dir):
+        '''
+        input: text file save directory
+        output: scrapped artist list 
+        '''
+
+    def artist_track(artist_list,save_dir):
+        '''
+        input: text file save directory
+        output: scrapped {artistid : [trackid]} dictionary of lists
+        '''
+    def lyric_list(artist_track, save_dir):
+        '''
+        input: {artistid:[trackid]}, save directory
+        output: scrapped {trackid:lyric} dictionary
+        '''
+        
+###   Following are the three links used to scrpae the information
+        https://www.jesusfreakhideout.com/lyrics/new/default.asp
+        https://www.jesusfreakhideout.com/lyrics/new/artist_list.asp?artist_id=
+        https://www.jesusfreakhideout.com/lyrics/new/track.asp?track_id=
