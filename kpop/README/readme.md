@@ -1,6 +1,7 @@
 ## The project consists of two parts.
 
 	1. Word/Document embedding using Gensim
+    
     	- Data Preprocessing 
 
 		- clean.py  
@@ -18,7 +19,8 @@
         	- evaluate.py
 
 	2. LDA topic modeling 
-    	  - Data Preprocessing 
+    	  
+	  - Data Preprocessing 
 	   
         	- clean.py
         	- tagger.py
