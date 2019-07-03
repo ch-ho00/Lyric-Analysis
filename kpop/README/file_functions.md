@@ -1,4 +1,4 @@
-train.py 
+### train.py 
     
     def koala_bow():
         '''
@@ -19,7 +19,7 @@ train.py
         '''
 
 
-clean.py
+### clean.py
     def clean_file(train_file,korean_song_id):
     '''
     Input: Raw text file 
@@ -50,7 +50,7 @@ clean.py
     Output: dictionary[list of cleaned words], vocab [list of cleaned words]
     '''
 
-tagger.py
+### tagger.py
     tagging
 
     def prepare_kiwi(train_file):
@@ -77,7 +77,7 @@ tagger.py
     output: stopword removed bag-of-words list
     """
 
-topic_modeling.py
+### topic_modeling.py
 
     def lda_visualize(ldamodel, dictionary, num_topic,name):
         '''
@@ -105,7 +105,7 @@ topic_modeling.py
         output: coherence score of model
         """
 
-evaluate.py
+### evaluate.py
 
     def load_result(loaded_model,model_name,input_words, num_close_word):
         '''
