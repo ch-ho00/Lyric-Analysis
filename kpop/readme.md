@@ -39,15 +39,15 @@
         	- evaluate.py
 
 ### To be more specific about the three process in each project,
-    1. Data Preprocessing 
+####    1. Data Preprocessing 
         - consists of processing the raw text file into structured data, sentence, to words
 	- removing stopwords
 	- lemmatization (if english) 
 
-    2. Train 
+####    2. Train 
         - word2vec model / LDA model
 
-    3. Check effectiveness
+####    3. Check effectiveness
         LDA
         - visualisation
 	- list of words for each topic 
