@@ -1,38 +1,38 @@
 ## The project consists of two parts.
 
-	1. Word/Document embedding using Gensim
+### 1. Word/Document embedding using Gensim
     
-    	- Data Preprocessing 
+####    	- Data Preprocessing 
 
 		- clean.py  
         	- tagger.py 
     
-    	- Train Model
+####    	- Train Model
 
 		- main_word2vec.py 
         	- topic_modeling.py 
         	- train.py 
 
-	- Check effectiveness 
+#### 	- Check effectiveness 
 
 		- main_pretrained.py 
         	- evaluate.py
 
-	2. LDA topic modeling 
+### 	2. LDA topic modeling 
     	  
-	  - Data Preprocessing 
+#### 	  - Data Preprocessing 
 	   
         	- clean.py
         	- tagger.py
     
-	  - Train Model
+#### 	  - Train Model
         
 		- main_kiwi.py 
         	- main_koala.py 
         	- topic_modeling.py 
         	- train.py 
 
-	  - Check effectiveness  
+#### 	  - Check effectiveness  
         	
 		- main_kiwi.py 
         	- main_koala.py 
