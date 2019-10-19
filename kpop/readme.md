@@ -1,3 +1,7 @@
+## Correlation  between document embedding of lyrics
+
+### BOW
+	Each lyric will be considered as a bag of words 
 ## The project consists of two parts.
 
 ### 1. Word/Document embedding using Gensim
