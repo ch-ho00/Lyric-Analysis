@@ -59,13 +59,15 @@
 
 #### Remark
 
-- Coherence score of the models built using kiwi cleaned words were ~0.42 
+- Coherence score of the models (effectiveness of model) built using kiwi cleaned words were ~0.42 
 
 - More information about coherence scores of others & coherence metric (refer to http://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/public.pdf)
 
 - To check the description of files and main files, one can refer to README/file_functions.md and README/main_files.md respectively.
 
 - File ko.bin, ko.tsv are the pretrained korean word2vec models (source: https://github.com/Kyubyong/wordvectors)
+
+- So if the vectors a and b are centered (i.e. have zero means), then their cosine similarity will be the same as their correlation coefficient. Therefore it is plausible to calculate the cosine similarity of each document vector(BOW / average of word embeddings or etc). 
 
 To run the files one has to use docker for compatibility issues.
 Steps are as follows:
